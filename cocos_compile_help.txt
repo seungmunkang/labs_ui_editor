@@ -1,0 +1,77 @@
+usage: cocos compile [-h] [-s SRC_DIR] [-q] [-p PLATFORM] [--list-platforms]
+                     [--proj-dir PROJ_DIR] [-m MODE] [-j JOBS] [-o OUTPUT_DIR]
+                     [--ap ANDROID_PLATFORM] [--ndk-mode NDK_MODE]
+                     [--app-abi APP_ABI] [--ndk-toolchain TOOLCHAIN]
+                     [--ndk-cppflags CPPFLAGS] [--android-studio] [--no-apk]
+                     [--vs VS_VERSION] [--source-map] [--advanced]
+                     [-t TARGET_NAME] [--sign-identity SIGN_ID] [--no-res]
+                     [--compile-script {0,1}] [--lua-encrypt]
+                     [--lua-encrypt-key LUA_ENCRYPT_KEY]
+                     [--lua-encrypt-sign LUA_ENCRYPT_SIGN]
+
+Compile projects to binary.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SRC_DIR, --src SRC_DIR
+                        Specify the path of the project.
+  -q, --quiet           Less output
+  -p PLATFORM, --platform PLATFORM
+                        Specify the target platform.
+  --list-platforms      List available platforms
+  --proj-dir PROJ_DIR   Specify the directory for target platform.
+  -m MODE, --mode MODE  Set the compiling mode, should be debug|release,
+                        default is debug.
+  -j JOBS, --jobs JOBS  Allow N jobs at once.
+  -o OUTPUT_DIR, --output-dir OUTPUT_DIR
+                        Specify the output directory.
+
+Android Options:
+  --ap ANDROID_PLATFORM
+                        Specify the Android platform used for building Android
+                        apk.
+  --ndk-mode NDK_MODE   Set the compiling mode of ndk-build, should be
+                        debug|release|none, native code will not be compiled
+                        when the value is none. Default is same value with
+                        '-m'.
+  --app-abi APP_ABI     Set the APP_ABI of ndk-build.Can be multi value
+                        separated with ':'. Sample : --app-aib
+                        armeabi:x86:mips. Default value is 'armeabi'.
+  --ndk-toolchain TOOLCHAIN
+                        Specify the NDK_TOOLCHAIN of ndk-build.
+  --ndk-cppflags CPPFLAGS
+                        Specify the APP_CPPFLAGS of ndk-build.
+  --android-studio      Use the Android Studio project for Android platform.
+  --no-apk              Not generate the apk file.
+
+Windows Options:
+  --vs VS_VERSION       Specify the Visual Studio version will be used. Such
+                        as: 2013. Default find available version
+                        automatically.
+
+Web Options:
+  --source-map          Enable source-map
+  --advanced            Compile all source js files using Closure Compiler's
+                        advanced mode, bigger compression ratio bug more risk.
+
+iOS/Mac Options:
+  -t TARGET_NAME, --target TARGET_NAME
+                        Specify the target name to be compiled.
+
+iOS Options:
+  --sign-identity SIGN_ID
+                        The code sign identity for iOS.
+
+lua/js project Options:
+  --no-res              Package without project resources.
+  --compile-script {0,1}
+                        Diable/Enable the compiling of lua/js script files.
+
+lua project Options:
+  --lua-encrypt         Enable the encrypting of lua scripts.
+  --lua-encrypt-key LUA_ENCRYPT_KEY
+                        Specify the encrypt key for the encrypting of lua
+                        scripts.
+  --lua-encrypt-sign LUA_ENCRYPT_SIGN
+                        Specify the encrypt sign for the encrypting of lua
+                        scripts.
