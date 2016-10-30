@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "EditableUI.h"
 
 USING_NS_CC;
 
@@ -48,6 +49,14 @@ bool HelloWorld::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
+    
+    Sprite * image = EditableUI::CREATE_SPRITE("flower.jpg");
+    //Sprite * image = Sprite::create("flower.jpg");
+    addChild(image, 0);
+    Point imagePosition = Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y);
+    image->setPosition(imagePosition);
+    image->setAnchorPoint(Point(0, 0));
+    image->setPosition(0, 0);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -71,7 +80,7 @@ bool HelloWorld::init()
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    //this->addChild(sprite, 0);
     
     return true;
 }
