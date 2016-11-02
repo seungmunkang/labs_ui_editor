@@ -16,11 +16,7 @@ const std::string EditableUI::BORDER_TAG = "BORDER";
 Sprite * EditableUI::CREATE_SPRITE(const std::string& filename)
 {
     Sprite * _retval = Sprite::create(filename);
-    if (_retval != nullptr)
-    {
-        EditableUI::ADD_BORDER(_retval);
-        
-    }
+    
     return _retval;
 }
 
@@ -32,7 +28,7 @@ void EditableUI::ADD_BORDER(Node * target)
     DrawNode * _border = DrawNode::create();
     
     _border->setName(EditableUI::BORDER_TAG);
-    _border->setContentSize(target->getContentSize());
+    _border->setContentSize(_size);
     _border->setColor(Color3B::BLUE);
     
     _border->drawPolygon(_verts, 4, Color4F(0, 0, 0, 0), 4.0f, Color4F::BLUE);
@@ -40,14 +36,38 @@ void EditableUI::ADD_BORDER(Node * target)
     target->addChild(_border, 0);
 }
 
-void EditableUI::setVisibleBorder(Node * target, bool visible)
+void EditableUI::ADD_MENU(Node * target, const ccMenuCallback & callback)
+{
+    if (target != nullptr && callback != nullptr)
+    {
+        Size _size = target->getContentSize();
+        
+        Menu * _menu = Menu::create();
+        _menu->setPosition(0, 0);
+        target->addChild(_menu);
+        
+        MenuItem * _menuitem = MenuItem::create();
+        _menuitem->setContentSize(_size);
+        _menuitem->setCallback(callback);
+        _menuitem->setAnchorPoint(Point(0, 0));
+        _menuitem->setPosition(0, 0);
+        _menu->addChild(_menuitem);
+    }
+}
+
+void EditableUI::CONVERT_BORDER(Node * target)
 {
     if (target != nullptr)
     {
         Node * _border = target->getChildByName(EditableUI::BORDER_TAG);
         if (_border != nullptr)
         {
-            _border->setVisible(visible);
+            
+            _border->setVisible(!_border->isVisible());
+        }
+        else
+        {
+            ADD_BORDER(target);
         }
     }
 }

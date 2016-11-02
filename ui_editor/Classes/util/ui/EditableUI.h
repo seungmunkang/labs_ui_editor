@@ -20,8 +20,9 @@ public:
     
     static Sprite * CREATE_SPRITE(const std::string& filename);
     static void ADD_BORDER(Node * target);
+    static void ADD_MENU(Node * target, const ccMenuCallback & callback);
     
-    static void setVisibleBorder(Node * target, bool visible);
+    static void CONVERT_BORDER(Node * target);
     
     
 };
